@@ -221,14 +221,18 @@
 
 <?php 
 
-    $array_15 = str_split('123456789012345678901234567890dsflsdl;;slkf;dlskf;lkf;sdl;slkf;lsdkf;lds;ss;;skf;ldss;s;;ss;kl;s;s;slk1234567890kljkljlksjfldkjslkjkjdskjslfjlsdkjflksjflksdjflkjsdflksjdflkjsdfdsjflkjfkjsljkdsjhjhsdkfhkjhjkhkjhljkljkjj34fjksfhskjdfhksjh');
+    $string_val = '12345678kljlkdsfkdjslkjsdkfjdfjlsdfdlkjkjjljljlkjl90';
+    $i = 0;
+    $j = 0;
+    $m = 1;
 
-    for ($i = 1, $j = 0; $i <= ceil(sqrt(count($array_15)*2)); $i++) {
-        $new_array_15[$i-1] = implode(array_slice($array_15, $j, $i));
+    while ($m > 0) {
+        $m = strlen(substr($string_val, $j, $i+1));
+        if (!empty($m)) $new_array_15[$i] = substr($string_val, $j, $i+1);
+        $i++;
         $j += $i;
     }
 
-    if (empty($new_array_15[count($new_array_15)-1])) array_pop($new_array_15);
     echo '<pre>'. print_r($new_array_15, true) . '</pre>';
 
 ?>
