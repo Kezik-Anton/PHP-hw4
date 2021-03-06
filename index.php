@@ -221,12 +221,14 @@
 
 <?php 
 
-    $array_15 = str_split('1234567890123456789012345678901234567890');
+    $array_15 = str_split('123456789012345678901234567890dsflsdl;;slkf;dlskf;lkf;sdl;slkf;lsdkf;lds;ss;;skf;ldss;s;;ss;kl;s;s;slk1234567890kljkljlksjfldkjslkjkjdskjslfjlsdkjflksjflksdjflkjsdflksjdflkjsdfdsjflkjfkjsljkdsjhjhsdkfhkjhjkhkjhljkljkjj34fjksfhskjdfhksjh');
 
-    for ($i = 1, $j = 0; $i <= sqrt(count($array_15)*2); $i++) {
+    for ($i = 1, $j = 0; $i <= ceil(sqrt(count($array_15)*2)); $i++) {
         $new_array_15[$i-1] = implode(array_slice($array_15, $j, $i));
         $j += $i;
-        }
+    }
+
+    if (empty($new_array_15[count($new_array_15)-1])) array_pop($new_array_15);
     echo '<pre>'. print_r($new_array_15, true) . '</pre>';
 
 ?>
@@ -260,7 +262,7 @@
 <?php 
 
     function randColor() {
-        $color = str_pad(dechex(rand(0x0, 0xFFFFFF)), 6 , "0");
+        $color = str_pad(dechex(rand(0x0, 0xFFFFFF)), 6, rand(0,9));
     return $color;
     }
 
@@ -292,12 +294,12 @@
 
 <?php
 
-function phoneCheker($a) {
-    $pattern = '/^(?:\+375)\d{9}$/';
+function checkPhone($a) {
+    $pattern = '/^((\+375|80){1}(\d){2})?(\d){7}$/';
     return preg_match($pattern,$a);
 }
 
-var_dump(phoneCheker('+375291567857'));
+var_dump(checkPhone('+375291234567'));
 
 ?>
 
@@ -307,18 +309,12 @@ var_dump(phoneCheker('+375291567857'));
 
 <?php
 
-/*
+    function checkEmail($a) {
+        $pattern = '/^[a-z][a-z0-9?]*([-_.]?[a-z0-9])*+@[a-z0-9]+([-_.]?[a-z])*.[a-z]{2,10}$/';
+        return preg_match($pattern, $a);
+    }
 
-[^(@\-_.)][a-zA-z0-9(\.(\-)?_){1}]*[^(@\-\_\.)]@?[^(@\-_.)][a-zA-z0-9]{1,}.[a-z]{2,10}
-
-*/
-
-function checkEmail($a) {
-    $pattern = '/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,10}/';
-    return preg_match($pattern,$a);
-}
-
-var_dump(checkEmail('a._nton@mail.by'));
+    var_dump(checkEmail('anton@mail.ru'));
 
 ?>
 
